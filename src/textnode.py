@@ -3,9 +3,9 @@ from enum import Enum
 
 class TextType(Enum):
     TEXT = "text"
-    BOLD = "bold"
-    ITALIC = "italic"
-    CODE = "code"
+    BOLD = "**"
+    ITALIC = "_"
+    CODE = "`"
     LINK = "link"
     IMAGE = "image"
 
@@ -22,4 +22,6 @@ class TextNode:
         return False
 
     def __repr__(self):
-        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
+        if self.url:
+            return f"TextNode({self.text}, {self.text_type}, {self.url})"
+        return f"TextNode({self.text}, {self.text_type})"

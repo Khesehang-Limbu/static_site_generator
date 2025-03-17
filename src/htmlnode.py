@@ -185,7 +185,12 @@ class LeafNode(HTMLNode):
             return self.value
         if self. props is not None:
             properties = self.props_to_html()
+        if self.tag == "img":
+            return f"<{self.tag}{properties} />"
         return f"<{self.tag}{properties}>{self.value}</{self.tag}>"
+
+    def __repr__(self):
+        return f"LeafNode({self.tag}, {self.value}, {self.props})"
 
 
 class ParentNode(HTMLNode):
@@ -208,3 +213,6 @@ class ParentNode(HTMLNode):
             properties = self.props_to_html()
 
         return f'<{self.tag}{properties}>{children_html}</{self.tag}>'
+
+    def __repr__(self):
+        return f"ParentNode({self.tag}, {self.children})"
